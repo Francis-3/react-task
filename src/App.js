@@ -1,5 +1,7 @@
 import './App.css';
 import axios from 'axios';
+import moment from 'moment'
+
 var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=RIBXT3XYLI69PC0Q';
 const { 'Meta Data': data1, 'Time Series (5min)': data2 } = await axios.get(url).then(res => res.data);
 function App() {
@@ -55,7 +57,7 @@ function App() {
               Object.keys(data2).map((key, idx) => (
                 <tr class="border-b border-gray-200 dark:border-gray-700" key={idx}>
                   <td class="px-3 py-4">
-                    {key}
+                    {moment(key).format('LLLL')}
                   </td>
                   {
                     Object.keys(data2[key]).map((innerKey, innerId) => (
